@@ -44,7 +44,9 @@ The speed and stability are related to the local network environment, the networ
 
 ::: zh-CN
 必须有 **115** 的帐号
-warning 注意事项
+:::
+::: zh-CN
+::: warning 注意事项
 速度与稳定性与本地网络环境，115 服务器的网络环境以及 OpenList 的运行机器的性能有关
 :::
 
