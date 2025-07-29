@@ -81,7 +81,6 @@ declare module 'vue-router/auto-routes' {
     '/guide/drivers/aliyundrive_open': RouteRecordInfo<'/guide/drivers/aliyundrive_open', '/guide/drivers/aliyundrive_open', Record<never, never>, Record<never, never>>,
     '/guide/drivers/baidu': RouteRecordInfo<'/guide/drivers/baidu', '/guide/drivers/baidu', Record<never, never>, Record<never, never>>,
     '/guide/drivers/baidu_photo': RouteRecordInfo<'/guide/drivers/baidu_photo', '/guide/drivers/baidu_photo', Record<never, never>, Record<never, never>>,
-    '/guide/drivers/baidu_share': RouteRecordInfo<'/guide/drivers/baidu_share', '/guide/drivers/baidu_share', Record<never, never>, Record<never, never>>,
     '/guide/drivers/chaoxing': RouteRecordInfo<'/guide/drivers/chaoxing', '/guide/drivers/chaoxing', Record<never, never>, Record<never, never>>,
     '/guide/drivers/cloudreve': RouteRecordInfo<'/guide/drivers/cloudreve', '/guide/drivers/cloudreve', Record<never, never>, Record<never, never>>,
     '/guide/drivers/cloudreve_v4': RouteRecordInfo<'/guide/drivers/cloudreve_v4', '/guide/drivers/cloudreve_v4', Record<never, never>, Record<never, never>>,
@@ -134,8 +133,7 @@ declare module 'vue-router/auto-routes' {
     '/guide/installation/reverse-proxy': RouteRecordInfo<'/guide/installation/reverse-proxy', '/guide/installation/reverse-proxy', Record<never, never>, Record<never, never>>,
     '/guide/installation/script': RouteRecordInfo<'/guide/installation/script', '/guide/installation/script', Record<never, never>, Record<never, never>>,
     '/guide/installation/source': RouteRecordInfo<'/guide/installation/source', '/guide/installation/source', Record<never, never>, Record<never, never>>,
-    '/migration/': RouteRecordInfo<'/migration/', '/migration', Record<never, never>, Record<never, never>>,
-    '/migration/alist-v3': RouteRecordInfo<'/migration/alist-v3', '/migration/alist-v3', Record<never, never>, Record<never, never>>,
+    '/guide/migrate': RouteRecordInfo<'/guide/migrate', '/guide/migrate', Record<never, never>, Record<never, never>>,
     '/privacy': RouteRecordInfo<'/privacy', '/privacy', Record<never, never>, Record<never, never>>,
     '/terms': RouteRecordInfo<'/terms', '/terms', Record<never, never>, Record<never, never>>,
   }
