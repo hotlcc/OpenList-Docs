@@ -11,6 +11,8 @@ categories:
   - drivers
 ---
 
+<!--@include: @/snippets/reverse-tip.md-->
+
 ::: en
 ::: tip
 Please use `Thunder` directly instead of `ThunderExpert` if you are not good at it.

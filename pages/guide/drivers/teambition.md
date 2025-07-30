@@ -20,6 +20,8 @@ sticky: true
 star: true
 ---
 
+<!--@include: @/snippets/reverse-tip.md-->
+
 ::: en
 Teambition project file, supports Chinese server and international server.
 :::
