@@ -50,21 +50,26 @@ top: 100
     - If the index has been completed, it is caused by turning on [Automatically update the index](#automatically-update-the-index). Please turn off [Automatically update the index](#automatically-update-the-index). If the problem still occurs, please close and restart OpenList.
     - Or switch the database to MySQL
 
-- `meilisearch`: I haven’t experienced it in depth yet and I don’t know much about the specific differences. It’s for professionals to use or you can check it yourself. [View PR link](https://github.com/alist-org/alist/pull/6060) , the only thing I know is that you have to [build it yourself](https://www.meilisearch.com/docs/learn/getting_started/installation) to use it. It supports many methods, but there is no daemon and other lazy operations, and it does not support the system [ It relies on Linux systems lower than `GLIBC_2.27`](https://github.com/meilisearch/meilisearch/issues/4022) If it is built on this machine, it will be automatically recognized. If it is another device, you can modify the **meilisearch** field content of the configuration file.
-  - Daemon：If you want to use it, you can create a new daemon process in the same way as manually starting OpenList.
-  - Download Url：https://github.com/meilisearch/meilisearch/releases
-  - `meilisearch` Docs Url：https://www.meilisearch.com/docs/learn/getting_started/installation
-  - Reference Links：https://github.com/AlistGo/alist/discussions/6830
+- `meilisearch`: A feature-rich, multilingual, blazing-fast search engine written in Rust. More accurate compared to `bleve`.
+  Requires [self-hosting](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch) or using a cloud service.
+  `OpenList` uses "http://localhost:7700" as the default meilisearch host,
+  if you host `meilisearch` and `OpenList` together locally with `meilisearch` authentication disabled, `OpenList` will automatically connect it,
+  otherwise you need to modify the **meilisearch** field in the configuration file (host, index UID, API key).
+  When `meilisearch` instance is protected by `api key`, the minimal actions of `api key` required by `OpenList` are `["search","indexes.get","settings.*","documents.*","tasks.*"]`.  
+  Storage Space Usage: ~800MiB per 100,000 files (including folders), which may be larger or smaller depending on filename length and folder depth. Please note that the storage space occupied by `meilisearch` will increase as files are continuously added/updated, and space will not be released even if you delete some or all documents from the index, unless you create a refresh instance. Generally, you don't need to worry too much about this situation, as the storage space usage will stabilize at a certain value with use, and will only have a significant impact on space usage when large numbers of files are added.
+  - Download：https://github.com/meilisearch/meilisearch/releases
+  - `meilisearch` Docs：https://www.meilisearch.com/docs/
+  - Reference：https://github.com/AlistGo/alist/discussions/6830
 
-The following table could help you understand the difference between the two search indexes quickly:
+The following table could help you understand the difference between these search indexes quickly:
 
-|                         | database(full text search)                      | Database (non-full-text search)                                          | bleve       | meilisearch |
-| ----------------------- | ----------------------------------------------- | ------------------------------------------------------------------------ | ----------- | ----------- |
-| Search results          | Can't find it in Chinese                        | More accurate than full-text search, you can search Chinese              | Fuzzy match | :question:  |
-| Search speed            | Fast,see above for advantages and disadvantages | Slower than full-text search, see above for advantages and disadvantages | Fast        | :question:  |
-| Specify folder search   | Yes                                             | Yes                                                                      | No          | :question:  |
-| Disk usage              | Low                                             | Low                                                                      | High        | :question:  |
-| Auto incremental update | Yes                                             | Yes                                                                      | No          | :question:  |
+|                         | database(full text search)                      | Database (non-full-text search)                                          | bleve       | meilisearch                               |
+| ----------------------- | ----------------------------------------------- | ------------------------------------------------------------------------ | ----------- | ----------------------------------------- |
+| Search results          | Can't search in Chinese                         | More accurate than full-text search, you can search Chinese              | Fuzzy match | Support CJK tokenizers & Chinese variants |
+| Search speed            | Fast,see above for advantages and disadvantages | Slower than full-text search, see above for advantages and disadvantages | Fast        | Blazing fast                              |
+| Specify folder search   | Yes                                             | Yes                                                                      | No          | Yes                                       |
+| Disk usage              | Low                                             | Low                                                                      | High        | High                                      |
+| Auto incremental update | Yes                                             | Yes                                                                      | No          | Yes                                       |
 
 :::
 
@@ -82,21 +87,25 @@ The following table could help you understand the difference between the two sea
     - 如果是已经索引完毕，是因为开启了[自动索引](#自动更新索引)导致的，请关闭使用[自动索引](#自动更新索引)，如果还是这个问题请关闭后重新启动OpenList
     - 或者将数据库切换为MySQL
 
-- `meilisearch`：暂时未深度体验也不太了解具体差异，给予专业人士使用或者自己去查询一翻，[查看PR链接](https://github.com/alist-org/alist/pull/6060)，唯一知道的是得[自己搭建](https://www.meilisearch.com/docs/learn/getting_started/installation)使用，支持很多种方法，但是并没有守护进程等懒人操作、不支持系统[依赖低于`GLIBC_2.27`](https://github.com/meilisearch/meilisearch/issues/4022)以下的Linux系统、如果是本机搭建会自动识别，如果是其它设备可以修改配置文件的**meilisearch**字段内容
-  - 守护进程：如果要使用可以自己按照手动启动OpenList的办法新建一个守护进程
+- `meilisearch`：一款使用Rust语言编写，支持多语言搜索，速度飞快、功能强大的开源搜索引擎，准确度比`bleve`更优。  
+  需要[自己搭建](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch)使用或使用云服务。  
+  在默认配置下，`meilisearch`的主机地址是 "http://localhost:7700"，如果`OpenList`和`meilisearch`都跑在本地，且`meilisearch`未启用认证，则`OpenList`会自动连接它。  
+  如果在其它设备搭建，则需要修改配置文件的**meilisearch**字段内容（主机地址、索引uid、api密钥）。  
+  当使用`api key`保护`meilisearch`实例时，`api key`的最小行为集（actions）为`["search","indexes.get","settings.*","documents.*","tasks.*"]`。  
+  存储空间占用情况：每100,000个文件（含文件夹）约占800MiB索引空间，因文件名长度、文件夹深度的不同可能更大或更小。请注意`meilisearch`占用的存储空间会随着文件的不断新增/更新而增加，即使删除索引的部分/所有文档也不会释放空间，除非创建一个全新实例。一般不用太过担心这种情况，占用的存储空间会随着使用而稳定在一定的数值，只有大量新增文件时才会对空间占用造成显著影响。
   - 下载地址：https://github.com/meilisearch/meilisearch/releases
-  - `meilisearch` 文档地址：https://www.meilisearch.com/docs/learn/getting_started/installation
+  - `meilisearch` 文档地址：https://www.meilisearch.com/docs/
   - 参考链接：https://github.com/AlistGo/alist/discussions/6830
 
-下表可以快速帮助您理解这两个搜索索引之间的区别:
+下表可以快速帮助您理解这几个搜索索引之间的区别:
 
-|                | 数据库（全文搜索） | 数据库（非全文搜索）       | bleve    | meilisearch |
-| -------------- | ------------------ | -------------------------- | -------- | :---------- |
-| 搜索结果       | 中文基本上搜不到   | 比全文搜索准，可以搜索中文 | 模糊匹配 | :question:  |
-| 搜索速度       | 快，优缺点看上面   | 比全文搜索慢，优缺点看上面 | 快       | :question:  |
-| 指定文件夹搜索 | 支持               | 支持                       | 不支持   | :question:  |
-| 硬盘占用       | 低                 | 低                         | 高       | :question:  |
-| 自动增量更新   | 支持               | 支持                       | 不支持   | :question:  |
+|                | 数据库（全文搜索） | 数据库（非全文搜索）       | bleve    | meilisearch                                          |
+| -------------- | ------------------ | -------------------------- | -------- | ---------------------------------------------------- |
+| 搜索结果       | 中文基本上搜不到   | 比全文搜索准，可以搜索中文 | 模糊匹配 | 支持不区分大小写、中文/CJK分词搜索、变体字、简繁匹配 |
+| 搜索速度       | 快，优缺点看上面   | 比全文搜索慢，优缺点看上面 | 快       | 极快                                                 |
+| 指定文件夹搜索 | 支持               | 支持                       | 不支持   | 支持                                                 |
+| 硬盘占用       | 低                 | 低                         | 高       | 高                                                   |
+| 自动增量更新   | 支持               | 支持                       | 不支持   | 支持                                                 |
 
 :::
 
@@ -135,10 +144,10 @@ Full-text search: It will not search in the text of all files, don't get it wron
 :::
 ::: zh-CN
 
-- 如果你想搜索一个特定的文件夹，你必须选择`数据库`作为搜索索引;
+- 如果你想搜索特定的文件夹内的文件，你可以选择`数据库`或`meilisearch`作为搜索索引;
 - 如果你选择`数据库`作为搜索索引，你的数据库类型是`sqlite3`，我们建议你在创建索引时不要在管理页面做任何更改，因为 `sqlite3` 不支持并发写，可能导致`数据库锁定`问题;
 - 如果你选择`bleve`作为搜索索引，如果你想搜索新文件或不想搜索已删除的文件，索引需要完全重建才能生效，因为`bleve`不支持增量更新;
-- 但对于`数据库`，它支持增量更新，所以你可以搜索新的文件或删除的文件，只需访问修改的文件夹(并单击'刷新'图标，如果缓存)，无需重建索引，这比`bleve`方便得多。
+- 但对于`数据库`/`meiliearch`，它支持增量更新，所以你可以搜索新的文件或删除的文件，只需访问修改的文件夹(并单击'刷新'图标，如果缓存)，无需重建索引，这比`bleve`方便得多。
 
 :::
 
