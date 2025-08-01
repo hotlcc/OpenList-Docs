@@ -216,7 +216,7 @@ ERRO[2022-11-20 12:05:19] error [unaligned 64-bit atomic operation] while run ta
 ### 首次运行 { lang="zh-CN" }
 
 ```bash
-docker log openlist
+docker logs openlist
 ```
 
 ::: en
@@ -227,8 +227,7 @@ You will see the admin password in the log.
 :::
 
 ```
-INFO[2025-06-30 12:17:09] username: admin
-INFO[2025-06-30 12:17:09] password: xYZabHGf
+Successfully created the admin user and the initial password is: xYZabHGf
 ```
 
 ### Not first run { lang="en" }
