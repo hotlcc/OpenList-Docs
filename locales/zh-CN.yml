@@ -8,7 +8,7 @@ search:
 
 # ! Navigation menu
 nav:
-  configuration: 配置
+  configuration: 配置指南
   guide: 用户指南
   faq: FAQ
   community:
@@ -21,10 +21,10 @@ nav:
 # ! Category titles (setting `title` in index.md's frontmatter will not work)
 category:
   # User Guide
-  configuration: 配置
+  configuration: 配置指南
   guide: 用户指南
-  installation: 安装
-  advanced: 高级
+  installation: 安装教程
+  advanced: 高级设置
   drivers: 添加存储
   # FAQ
   faq: FAQ
