@@ -26,6 +26,21 @@ top: 960
 ## 如何使用 OpenList Proxy { lang="zh-CN" }
 
 :::en
+:::danger
+Cloudflare has explicitly prohibited the use of Workers for proxy operations. Quick deployments implemented on CF-Worker should be used for **experimental** and **temporary testing** purposes only, and not for long-term or high-traffic.
+
+OpenList is not responsible for any consequences resulting from the use
+
+:::
+:::zh-CN
+:::danger
+CloudFalre已明确禁止使用Worker作为代理流量使用，对于在CF-Worker上实现的快速部署，应当时基于**实验性质**的**临时测试**，而非生产环境下使用长期、大流量使用。
+
+OpenList对于使用该Worker造成的任何后果均不负责。
+
+:::
+
+:::en
 For OpenList Proxy, we provide two deployment methods:
 
 - cf-worker

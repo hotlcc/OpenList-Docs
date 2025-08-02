@@ -20,6 +20,14 @@ sticky: true
 # this page will appear in starred articles
 star: true
 ---
+::: en
+::: warning
+Due to MEGA requires decryption to be performed on the OpenList server backend, **using proxy URL** with this driver cannot avoid server traffic consumption.
+:::
+::: zh-CN
+::: warning
+由于MEGA需要在OpenList服务器后端实现解密，在该驱动**使用代理地址**不能避免服务器流量消耗。
+:::
 
 ::: en
 MEGA official website: **https://mega.nz/login**
