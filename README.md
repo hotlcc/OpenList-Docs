@@ -61,7 +61,7 @@ pnpm serve
 
 ## 🤝 Contributing
 
-Welcome contributions to improve the documentation! Please read our [Contributing Guide](./CONTRIBUTE.md) for details on how to submit improvements.
+Welcome contributions to improve the documentation! Please read our [Contributing Guide](./CONTRIBUTING.md) for details on how to submit improvements.
 
 ## 📝 License
 
