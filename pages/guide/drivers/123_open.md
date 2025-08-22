@@ -23,10 +23,16 @@ https://www.123pan.com/developer
 ::: en
 ::: warning
 This driver uses the [developer authorization mode](https://123yunpan.yuque.com/org-wiki-123yunpan-muaork/cr6ced/hpengmyg32blkbg8), which grants direct management access to the cloud drive associated with the provided public/private key pair, , so you **must use your client id and client secret**.
+
+The acquired token counts as a login device
+
 :::
 ::: zh-CN
 ::: warning
 该驱动使用的是[开发者授权模式](https://123yunpan.yuque.com/org-wiki-123yunpan-muaork/cr6ced/hpengmyg32blkbg8),将会直接获得该密钥对应网盘的管理权限，所以**必须使用自己的密钥**。
+
+获取的Token算做一个登录设备
+
 :::
 
 ::: en
@@ -145,6 +151,8 @@ Open the official website of 123 Cloud Drive, navigate to the folder you want to
 
 For example, <https://www.123pan.com/?homeFilePath=123456>
 
+API queries can also be used
+
 The `root folder ID` of this folder is `123456`.
 :::
 ::: zh-CN
@@ -153,6 +161,8 @@ The `root folder ID` of this folder is `123456`.
 打开 123 网盘官网，点击进入要设置的文件夹时点击 URL 中 `homeFilePath`后面的数字
 
 如 <https://www.123pan.com/?homeFilePath=123456>
+
+也可以使用API查询
 
 这个文件夹的 `根文件夹ID` 即为 `123456`
 
