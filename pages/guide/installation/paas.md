@@ -32,6 +32,19 @@ The documentation may not be updated in a timely manner. Please make adjustments
 ### 一键部署 { lang="zh-CN" }
 
 ::: en
+::: danger
+Due to the removal of `PUID`/`PGID` environment variable support for better container specifications in [OpenList v4.1.1](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.1), ClawCloud platform will not be able to function properly due to lack of permission to write data (including using images or app in App Store).
+
+If you need to continue using the ClawCloud to deploy OpenList, please refer to [#1209 (comment)](https://github.com/OpenListTeam/OpenList/issues/1209#issuecomment-3243803024).
+:::
+::: zh-CN
+::: danger
+由于在[OpenList v4.1.1](https://github.com/OpenListTeam/OpenList/releases/tag/v4.1.1)中为容器规范移除了`PUID`/`PGID`环境变量支持，故在 ClawCloud 平台将由于无权限写入数据而无法正常使用（包括使用镜像和App Store内应用）
+
+如需继续使用 ClawCloud 平台部署 OpenList，请参考 [#1209 (comment)](https://github.com/OpenListTeam/OpenList/issues/1209#issuecomment-3243803024)。
+:::
+
+::: en
 Click the button below to [deploy to Claw Cloud](https://template.run.claw.cloud/?openapp=system-fastdeploy%3FtemplateName%3Dopenlist). It can also be found in App Launchpad.
 :::
 
