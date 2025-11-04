@@ -49,7 +49,11 @@ Strm uses a local proxy method, and during the **`Download Preview (Read-Only)`*
   If enabled, it will be:
   `http://localhost:5244/Video/%E7%94%B5%E5%BD%B1/%E5%86%8D%E8%A7%81%EF%BC%8C%E6%9D%8E%E5%8F%AF%E4%B9%90%20(2023)/%E5%86%8D%E8%A7%81%EF%BC%8C%E6%9D%8E%E5%8F%AF%E4%B9%90%20(2023)%20-%202160p.mkv`
 
-- **Local Model:** The generated strm file after opening will not contain URL prefixes
+- **Without Url:** The generated strm file after opening will not contain URL prefixes
+
+- **SaveStrmToLocal:** When enabled, accessing a directory within or mounted by the Strm driver will save the Strm files locally
+
+- **SaveStrmLocalPath:** The local directory path where Strm files are stored.
 
 :::
 
@@ -105,6 +109,10 @@ Strm采用本地代理方式，在 **`下载预览（只读）`** 操作时会�
 
   启用时`http://localhost:5244/Video/%E7%94%B5%E5%BD%B1/%E5%86%8D%E8%A7%81%EF%BC%8C%E6%9D%8E%E5%8F%AF%E4%B9%90%20(2023)/%E5%86%8D%E8%A7%81%EF%BC%8C%E6%9D%8E%E5%8F%AF%E4%B9%90%20(2023)%20-%202160p.mkv`
 
-- **本地模式**：开启后生成的strm文件将不包含URL前缀
+- **不包含URL前缀**：开启后生成的strm文件将不包含URL前缀
+
+- **保存Strm文件至本地**: 开启后访问 strm 驱动中目录或被 strm 驱动挂载的目录时会将 strm 文件保存至本地
+
+- **保存Strm文件本地路径**: strm文件保存的本地路径
 
 :::
