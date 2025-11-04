@@ -434,10 +434,14 @@ Example 2: Another plugin method covering 360, Chrome, Edge: **https://youtu.be/
 ::: en
 Official Documentation: [百度网盘开放平台 - 上传 - 能力说明](https://pan.baidu.com/union/doc/3ksg0s9ye)
 
-> Baidu Netdisk requires that each slice be uploaded within 30 seconds, so excessively high concurrency during file uploads may result in a significant number of failures.
+> ~~Baidu Netdisk requires that each slice be uploaded within 30 seconds, so excessively high concurrency during file uploads may result in a significant number of failures.~~  
+> Currently (November 2025), Baidu Netdisk appears to have significantly relaxed the timeout limit for uploading slices.
+> Tests show that uploading single slice is now allowed to exceed 30 minutes.
+> Therefore, after extending the timeout duration, the failure rate for batch uploading large files should be greatly reduced (even if low upload bandwidth).
 
 - Upload Threads: The number of slices to upload concurrently.
 - Upload API: The domain endpoint used for uploading.
+- Use dynamic upload API: Dynamically fetch upload domain, generally can achieve maximum upload speed. When enabled, the `Upload API` setting will be used as a fallback if failed to get online. This is enabled by default.
 - Custom Upload Slice Size: Allows you to specify the size of each slice. Note that there are limitations, and this feature is available to VIPs only.
 - Low Bandwidth Upload Mode: Attempts to address the frequent `Client.Timeout exceeded while awaiting headers` errors encountered in low upload bandwidth scenarios (e.g., residential broadband). When enabled, it uses the smallest possible slice size.
 
@@ -446,10 +450,12 @@ Official Documentation: [百度网盘开放平台 - 上传 - 能力说明](https
 ::: zh-CN
 官方文档：[百度网盘开放平台 - 上传 - 能力说明](https://pan.baidu.com/union/doc/3ksg0s9ye)
 
-> 百度网盘要求在 30s 内完成单个分片的上传，所以上传文件时并发过高可能会导致大量失败。
+> ~~百度网盘要求在 30s 内完成单个分片的上传，所以上传文件时并发过高可能会导致大量失败。~~  
+> 截止目前（2025年11月）百度网盘似乎大幅放宽了分片上传超时时间，实测单分片允许超30分钟的上传时间，所以在延长超时时间后，批量上传大文件的失败率应该会大大降低（即便上传带宽较低）。
 
 - 上传线程：同时上传几个分片
 - 上传 API：上传的域名端点
+- 使用动态上传 API：动态获取上传域名，一般可实现上传速度最大化，当开启时，将“上传 API”设置作为后备选项，无法在线获取到域名时使用。此设置默认开启。
 - 自定义上传分片大小：用于指定分片大小，有限制，仅会员可用
 - 低上传带宽模式：尝试解决低上传带宽场景（如家宽）下，频繁出现 `Client.Timeout exceeded while awaiting headers` 的问题。开启后会使用尽可能小的分片大小。
 
