@@ -130,6 +130,180 @@ Full-text search: It will not search in the text of all files, don't get it wron
 全文搜索：不是在所有文件里面进行文件的文字里面进行搜索，别理解错了。
 :::
 
+### Deploy MeiliSearch for indexing using Docker Compose { lang="en" }
+
+### 使用docker compose部署meilisearch进行索引 { lang="zh-CN" }
+
+#### Deploy MeiliSearch using Docker Compose { lang="en" }
+
+#### 使用docker compose部署meilisearch { lang="zh-CN" }
+
+::: en
+
+Feeling confused?
+
+Here's a Compose example to add `meilisearch` to your Openlist Compose. Follow the steps to set up indexing with `meilisearch`.
+
+```yaml
+version: '3.3'
+services:
+  openlist:
+    image: 'openlistteam/openlist:beta-aio'
+    container_name: openlist
+    volumes:
+      - '/tmp/data/Docker/OpenList:/opt/openlist/data'
+    ports:
+      - '5244:5244'
+    environment:
+      - UMASK=022
+    networks:
+      - openlist
+    restart: unless-stopped
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.16
+    container_name: meilisearch
+    ports:
+      - '7700:7700'
+    volumes:
+      - /tmp/data/Docker/meilisearch/meili_data:/meili_data
+    command: meilisearch --schedule-snapshot --snapshot-dir /meili_data/snapshots
+    environment:
+      - MEILI_MASTER_KEY=your_master_key_here
+    tty: true
+    stdin_open: true
+    networks:
+      - openlist
+    restart: unless-stopped
+
+networks:
+  openlist:
+    driver: bridge
+```
+
+Configuration Explanation:
+
+- `UMASK`: Sets file permissions
+- `getmeili/meilisearch:v1.16`: Official recommendation to use a fixed version number (latest version at time of writing is `v1.16`). You may check the latest version yourself via the [official local deployment docs](https://www.meilisearch.com/docs/learn/self_hosted/install_meilisearch_locally).
+- Additional parameters for meilisearch can be modified via the [official local deployment docs](https://www.meilisearch.com/docs/learn/self_hosted/install_meilisearch_locally) or deployed using alternative methods.
+
+:::
+
+::: zh-CN
+
+感到一头雾水？
+
+这里有一个compose示例，可以附加`meilisearch`到你的Openlist的compose中，然后按照步骤设置使用`meilisearch`进行索引。
+
+```yaml
+version: '3.3'
+services:
+  openlist:
+    image: 'openlistteam/openlist:beta-aio'
+    container_name: openlist
+    volumes:
+      - '/tmp/data/Docker/OpenList:/opt/openlist/data'
+    ports:
+      - '5244:5244'
+    environment:
+      - UMASK=022
+    networks:
+      - openlist
+    restart: unless-stopped
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.16
+    container_name: meilisearch
+    ports:
+      - '7700:7700'
+    volumes:
+      - /tmp/data/Docker/meilisearch/meili_data:/meili_data
+    command: meilisearch --schedule-snapshot --snapshot-dir /meili_data/snapshots
+    environment:
+      - MEILI_MASTER_KEY=your_master_key_here
+    tty: true
+    stdin_open: true
+    networks:
+      - openlist
+    restart: unless-stopped
+
+networks:
+  openlist:
+    driver: bridge
+```
+
+设置解释：
+
+- `UMASK`: 设置文件权限
+- `getmeili/meilisearch:v1.16`: 官方建议使用固定的版本编号(本文撰写时最新版本为`v1.16`),您可以自行从[官网本地部署docs](https://www.meilisearch.com/docs/learn/self_hosted/install_meilisearch_locally)查询最新版本。
+- 有关meilisearch的其他参数可以通过[官网本地部署docs](https://www.meilisearch.com/docs/learn/self_hosted/install_meilisearch_locally)自行修改或采用其他方式部署。
+
+:::
+
+::: en
+::: warning
+The `/tmp/data/Docker` directory here is merely an example; please store your data in an appropriate location.
+
+Additionally, the `MEILI_MASTER_KEY` here should be replaced with a key you generate yourself. You should substitute it with any alphanumeric string of 16 bytes or more. In most cases, one character corresponds to one byte.
+
+PS: This provides only a basic example. Please modify it according to your needs and add other configurations as required.
+:::
+
+::: zh-CN
+::: warning
+这里的`/tmp/data/Docker`仅是一个示例，请将你的数据存储在合适的位置。
+
+同时这里的`MEILI_MASTER_KEY`应该替换为你自己生成的密钥，你应该替换为任何 16 字节或更多字节的字母数字字符串。在大多数情况下，一个字符对应一个字节。
+
+PS：这里仅仅提供一个基础示例，请根据你的需求进行修改和添加其他配置。
+:::
+
+#### Setting up meilisearch in openlist { lang="en" }
+
+#### 在openlist中设置使用meilisearch { lang="zh-CN" }
+
+::: en
+How to configure MeiliSearch in OpenList
+
+First, you need to modify config.json. In this example, it should be located at `/tmp/data/Docker/OpenList/config.json`.
+
+Edit the section below, filling in the IP address and port of your MeiliSearch instance, along with the key you set in `MEILI_MASTER_KEY`.
+
+```json
+  "meilisearch": {
+    "host": "http://meilisearch:7700",
+    "api_key": "your_master_key_here",
+    "index": "openlist"
+  },
+```
+
+Next, open the management panel, click `Indexes`, select `meilisearch`, and click `Refresh` to rebuild the index.
+
+![](/img/advanced/index_settings_panel.png){width=600px}
+
+:::
+
+::: zh-CN
+如何在openlist设置meilisearch
+
+首先你需要修改config.json,在这个示例中，它应该位于`/tmp/data/Docker/OpenList/config.json`。
+
+修改下文的部分，填写meilisearch的ip地址与端口，以及你在`MEILI_MASTER_KEY`设置的密钥。
+
+```json
+  "meilisearch": {
+    "host": "http://meilisearch:7700",
+    "api_key": "your_master_key_here",
+    "index": "openlist"
+  },
+```
+
+接下来打开管理面板，点击`索引`，选择`meilisearch`，点击`刷新`，即可编制索引。
+
+![](/img/advanced/index_settings_panel.png){width=600px}
+
+:::
+
 ## Search tips { lang="en" }
 
 ## 搜索提示 { lang="zh-CN" }
