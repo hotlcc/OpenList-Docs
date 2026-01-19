@@ -55,6 +55,49 @@ The path of fodler you want to mount, same as join in address
 要挂载的文件夹路径，与加入地址相同
 :::
 
+## Tls insecure skip verify { lang="zh-CN" }
+
+## 跳过 SSL 证书验证 { lang="zh-CN" }
+
+::: en
+Whether to skip SSL certificate verification. If your WebDAV server uses a self-signed certificate, you may need to enable this option. Enabling it will reduce security, please use it with caution.
+:::
+::: zh-CN
+是否跳过 SSL 证书验证。如果你的 WebDAV 服务器使用自签名证书，可能需要启用此选项。启用后会降低安全性，请谨慎使用。
+:::
+
+## Support 302 redirect { lang="en" }
+
+## 支持 302 重定向 { lang="zh-CN" }
+
+::: zh-CN
+
+通常情况下，WebDAV 服务器会直接返回文件内容，由于需要授权，只能代理下载。但一些服务器会重定向到实际的文件地址，如 OpenList `WebDav 策略` 的 `302 重定向`。
+
+WebDAV 存储设置的 `Web 代理` 选项默认为开启状态，如果关闭，OpenList 将会尝试获取重定向后的地址，然后将该地址返回给用户设备直接下载。
+
+前提条件：
+
+1. WebDAV 服务器必须支持返回 302，如果返回 200，则无法使用此功能，关闭 Web 代理将无法使用。
+2. 返回的 302 地址必须是公开可访问的地址，不得需要授权信息，否则用户设备无法下载。
+3. 在存储设置中关闭 `Web 代理` 选项。
+
+:::
+
+::: en
+
+In general, WebDAV servers return the file content directly. Due to the need for authorization, only proxy downloads are possible. However, some servers redirect to the actual file address, such as OpenList `WebDav Policy`'s `302 Redirect`.
+
+The `Web Proxy` option in WebDAV storage settings is enabled by default. If disabled, OpenList will attempt to obtain the redirected address and return it to the user device for direct download.
+
+Prerequisites:
+
+1. The WebDAV server must support returning 302; if it returns 200, this feature cannot be used, and disabling Web Proxy will make it unusable.
+2. The returned 302 address must be publicly accessible and must not require authorization information; otherwise, the user device cannot download it.
+3. Disable the `Web Proxy` option in the storage settings.
+
+:::
+
 ## OneDrive/SharePoint { lang="zh-CN" }
 
 ## OneDrive/SharePoint { lang="en" }
@@ -90,6 +133,10 @@ The username is the OneDrive account email, and the password is the OneDrive acc
 
   Another situation is that the corresponding OneDrive account has not been used for a long time, which will also prompt this problem. Try to log in to the account again from the OneDrive web page. The system will prompt you to change the password. After updating the password, try again with the changed password.
 
+- **failed link: failed get link: redirect failed, status: 200**
+
+  This error indicates that the WebDAV server does not support 302 redirects. You need to enable the `Web Proxy` option in the storage settings to use proxy downloads.
+
 :::
 ::: zh-CN
 
@@ -102,6 +149,10 @@ The username is the OneDrive account email, and the password is the OneDrive acc
   ![webdav](/img/drivers/webdav/webdav_Security.png)
 
   另外一种情况是对应的 OneDrive 账号太长时间没有操作也会提示这个问题，尝试从 OneDrive 网页端重新登录账号，系统会提示要求更改密码，更新密码后，使用更改后的密码再次尝试即可
+
+- **failed link: failed get link: redirect failed, status: 200**
+
+  此错误表示 WebDAV 服务器不支持 302 重定向，需要在存储设置中启用 `Web 代理` 选项以使用代理下载。
 
 :::
 
@@ -116,19 +167,22 @@ The username is the OneDrive account email, and the password is the OneDrive acc
 title: Which download method is used by default?
 ---
 flowchart TB
-    style c1 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff
+    style a1 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff
     style a2 fill:#ff7575,stroke:#333,stroke-width:4px
     subgraph ide1 [ ]
-    c1
+    a1
     end
-    c1[local proxy]:::someclass==default===>a2[user equipment]
+    a1[local proxy]:::someclass====|default|a2[user equipment]
     classDef someclass fill:#f96
+    c1[302]-.alternative.->a2[user equipment]
     b1[Download proxy URL]-.alternative.->a2[user equipment]
+    click a1 "../drivers/common.html#webdav-policy"
     click b1 "../drivers/common.html#webdav-policy"
     click c1 "../drivers/common.html#webdav-policy"
 ```
 
 :::
+
 ::: zh-CN
 
 ```mermaid
@@ -136,14 +190,16 @@ flowchart TB
 title: 默认使用的哪种下载方式？
 ---
 flowchart TB
-    style c1 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff
+    style a1 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff
     style a2 fill:#ff7575,stroke:#333,stroke-width:4px
     subgraph ide1 [ ]
-    c1
+    a1
     end
-    c1[本机代理]:::someclass==默认===>a2[用户设备]
+    a1[本机代理]:::someclass====|默认|a2[用户设备]
     classDef someclass fill:#f96
+    c1[302]-.备选.->a2[用户设备]
     b1[代理URL]-.备选.->a2[用户设备]
+    click a1 "../drivers/common.html#webdav-策略"
     click b1 "../drivers/common.html#webdav-策略"
     click c1 "../drivers/common.html#webdav-策略"
 ```
