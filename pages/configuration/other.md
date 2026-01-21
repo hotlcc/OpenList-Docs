@@ -13,10 +13,40 @@ top: 10
 ## Aria2
 
 ::: en
-Set Aria2 uri and Aria2 for offline download. Aria2 needs to be installed on the same server(container if use Docker) as OpenList.
+Used for the offline download feature, which downloads an external resource outside of OpenList into the storage managed by OpenList.
+Set Aria2 uri and Aria2 for offline download.
+
+> `Aria2` needs to access the same directory as `OpenList`: `/opt/openlist/data/temp/aria2`. Assuming that both Aria2 and OpenList are independent containers, where OpenList mounts the directory `/etc/openlist/data:/opt/openlist/data`, Aria2 containers need to be additionally mounted under the path `/etc/openlist/data/temp/aria2:/opt/openlist/data/temp/aria2`.
+
 :::
 ::: zh-CN
-设置 Aria2 URI 以供离线下载。Aria2 需要和 OpenList 安装在同一台服务器（如果使用 Docker 则是容器）上。
+这是用于离线下载功能，即：将一个OpenList外部的资源下载到OpenList所管理的存储中。
+设置 Aria2 URI 以供离线下载。
+
+> **`Aria2` 需要和`OpenList`访问同一目录: `/opt/openlist/data/temp/aria2`。假设您的Aria2和OpenList都是独立容器，其中OpenList挂载的目录为`/etc/openlist/data:/opt/openlist/data`，则Aria2容器需要额外挂载的`/etc/openlist/data/temp/aria2:/opt/openlist/data/temp/aria2`路径下。**
+
+:::
+
+### Aria2 地址 { lang="zh-CN" }
+
+### Aria2 uri { lang="en" }
+
+::: en
+The Aria2 RPC address used for offline downloading. The default value is: `http://localhost:6800/jsonrpc`.
+:::
+::: zh-CN
+用于离线下载的 Aria2 RPC 地址。默认值为：`http://localhost:6800/jsonrpc`。
+:::
+
+### Aria2 秘钥 { lang="zh-CN" }
+
+### Aria2 secret { lang="en" }
+
+::: en
+The Aria2 RPC secret key used for offline downloading. The default value is empty.
+:::
+::: zh-CN
+用于离线下载的 Aria2 RPC 秘钥。默认值为空。
 :::
 
 ## qBittorrent
