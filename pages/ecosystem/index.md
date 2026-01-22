@@ -329,6 +329,55 @@ OpenList 专用 CDN 预热工具。搭配 EdgeOne/ESA 回源跟随重定向，�
 自由开源软件，MPLv2协议
 :::
 
+### [MY QNAP's OpenList ↗](https://www.myqnap.org/product/openlist/)
+
+::: zh-CN
+QNAP存储库 MyQNAP 将 OpenList 应用进行分发并收取 6 美元费用。
+我方已与 QNAP 法国团队取得联系，并根据 AGPL 协议及 CC 协议，要求对方提供应用的哈希值，或将该应用下架。
+目前，沟通进展如下：
+
+1. 该应用由 QNAP 官方提供，不由用户上传。
+2. 收费行为非用于盈利，因此 CC 协议不适用。
+3. 根据 AGPL 协议，如应用未被修改，则必须提供 MD5、SHA 等哈希值。目前 QNAP 表示相关工作正在进行中。
+4. 基于上述情况，QNAP 已临时下架该应用，并将更新页面。展示哈希值后，OpenList 的下载与分发将恢复。
+5. 截至目前，QNAP 暂未实际违反协议。我方为防范开源供应链风险而启动的调查行动已完成。
+
+:::
+::: en
+QNAP's MyQNAP repository distributes the OpenList application for a fee of $6.
+We have contacted the QNAP France team and, based on the AGPL and CC licenses, requested them to provide the hash values of the application or take it down.
+The communication progress is as follows:
+
+1. The application is provided by QNAP officially, not uploaded by users.
+2. The charging behavior is not for profit, so the CC license does not apply.
+3. According to the AGPL license, if the application has not been modified, hash values like MD5, SHA, etc. must be provided. Currently, QNAP states that the relevant work is in progress.
+4. Based on the above situation, QNAP has temporarily taken down the application and will update the page. Once the hash values are displayed, the download and distribution of OpenList will resume.
+5. As of now, QNAP has not actually violated the license. Our investigation initiated to prevent open-source supply chain risks has been completed.
+
+:::
+
+::: en
+::: details History information (outdated，archived at 2026-01-22)
+The third-party closed-source QPKG version of OpenList.
+
+[Archived on 2025-7-13](https://web.archive.org/web/20250713005135/https://www.myqnap.org/product/openlist/)
+
+Proprietary software, paid license.
+
+Note: The source code is not open, violating the AGPLv3 license and the OpenList logo's CC BY-NC-SA 4.0 license.
+:::
+
+::: zh-CN
+::: details 历史信息（已过时，归档于2026-01-22）
+OpenList的第三方闭源qpkg版本。
+
+[存档于2025-7-13](https://web.archive.org/web/20250713005135/https://www.myqnap.org/product/openlist/)
+
+专有软件，付费授权
+
+注意：因没有开放源码，违反AGPLv3许可证、违反OpenList LOGO的CC BY-NC-SA 4.0许可。
+:::
+
 ## Third-Party Proprietary Software { lang="en" }
 
 ## 其他第三方项目 { lang="zh-CN" }
@@ -346,32 +395,6 @@ Any actions of these software/projects (including references to OpenList in thei
 
 以下软件/项目的任何行为（包括其名称中对 OpenList 的引用、功能设计、内容及宣传方式）均**不代表** OpenList 项目的立场。软件功能、使用后果及相关法律责任完全由其开发者或发布方承担，OpenList 项目概不负责。
 :::
-
-### [MY QNAP's OpenList ↗](https://www.myqnap.org/product/openlist/)
-
-::: en
-::: danger
-The third-party closed-source QPKG version of OpenList.
-
-[Archived on 2025-7-13](https://web.archive.org/web/20250713005135/https://www.myqnap.org/product/openlist/)
-
-Proprietary software, paid license.
-
-Note: The source code is not open, violating the AGPLv3 license and the OpenList logo's CC BY-NC-SA 4.0 license.
-:::
-
-::: zh-CN
-::: danger
-OpenList的第三方闭源qpkg版本。
-
-[存档于2025-7-13](https://web.archive.org/web/20250713005135/https://www.myqnap.org/product/openlist/)
-
-专有软件，付费授权
-
-注意：因没有开放源码，违反AGPLv3许可证、违反OpenList LOGO的CC BY-NC-SA 4.0许可。
-:::
-
----
 
 ### [Yxiguan/OpenList_123](https://github.com/Yxiguan/OpenList_123)
 
